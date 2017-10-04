@@ -9,4 +9,28 @@ categories:
 tags:
   - visualization
 ---
+```{r}
+library(Lahman)
+library(sqldf)
+library(ggplot2)
+```
+
+```{r}
+#extracting the data--------
+
+query<-"SELECT yearID,HR
+FROM Batting
+WHERE playerID='ruthba01'"
+
+result<-sqldf(query)
+
+#vidualizing the data--------
+
+ggplot()+
+  geom_line(data=result,aes(x=yearID,y=HR))+
+  geom_point(data=result,aes(x=yearID,y=HR))+
+  ggtitle("Ruth's Homerun Totals Through the Years")+
+  xlab("year")+
+  ylab("homeruns")
+```
 
